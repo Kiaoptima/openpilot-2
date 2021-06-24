@@ -294,3 +294,24 @@ void LongControlSelect::refresh() {
   btnminus.setText("◀");
   btnplus.setText("▶");
 }
+
+//Githash
+GitHash::GitHash() : AbstractControl("Git Commit(Local/Remote)", "", "") {
+
+  QString localhash = QString::fromStdString(params.get("GitCommit").substr(0, 7));
+  QString remotehash = QString::fromStdString(params.get("GitCommitRemote"));
+  hlayout->addStretch(1);
+
+  local_hash.setText(QString::fromStdString(params.get("GitCommit").substr(0, 7)));
+  remote_hash.setText(QString::fromStdString(params.get("GitCommitRemote")));
+  //local_hash.setAlignment(Qt::AlignVCenter);
+  remote_hash.setAlignment(Qt::AlignVCenter);
+  local_hash.setStyleSheet("color: #aaaaaa");
+  if (localhash == remotehash) {
+    remote_hash.setStyleSheet("color: #aaaaaa");
+  } else {
+    remote_hash.setStyleSheet("color: #0099ff");
+  }
+  hlayout->addWidget(&local_hash);
+  hlayout->addWidget(&remote_hash);
+}

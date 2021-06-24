@@ -13,10 +13,6 @@ crwusiz openpilot
 
 [![](https://i.imgur.com/W8XLxVH.png)](#)
 
-[![](https://i.imgur.com/aspMjGT.jpg)](#)
-
-[![](https://i.imgur.com/1DB7gyL.jpg)](#)
-
 - kor NanumGothic font / Comma Bootlogo / Bootanimation Auto install
 - event message, ui kor translate
 - steeringwheel rotate, tpms display
@@ -26,18 +22,18 @@ crwusiz openpilot
 - lateralcontrolselect ( PID / INDI / LQR )
 - mfcselect ( LKAS / LDWS / LFA )
 - longcontrolselect ( MAD / LONG )
-- add toggle function
-- setting ui icon & emoji update
+- add toggle / function / simple ui
+- - -
+## Harness Cable and Car Year Compatible Chart
 
-## Harness Cable Car and Year Compatible Chart
+cable order -> https://smartstore.naver.com/hyotrade/products/5341431170
 
-![Connector](https://i.imgur.com/kPXaLFF.jpg)
-
-![Chart](https://i.imgur.com/gw0WcZG.jpg)
-
-https://smartstore.naver.com/hyotrade/products/5341431170
------
-
+[![](https://i.imgur.com/aspMjGT.jpg)](#)
+[![](https://i.imgur.com/1DB7gyL.jpg)](#)
+[![](https://i.imgur.com/2r43I6d.jpg)](#)
+[![](https://i.imgur.com/N5IkjUX.jpg)](#)
+[![](https://i.imgur.com/HaXcjPI.jpg)](#)
+ - - -
 
 [![](https://i.imgur.com/UelUjKAh.png)](#)
 

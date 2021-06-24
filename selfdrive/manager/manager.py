@@ -38,7 +38,7 @@ def manager_init():
     # add
     ("IsMetric", "1"),
     ("LongControlSelect", "0"),
-    ("AutoLaneChangeEnabled", "0"),
+    ("AutoLaneChangeEnabled", "1"),
     ("PutPrebuilt", "0"),
     ("MfcSelect", "0"),
     ("LateralControlSelect", "0"),
@@ -105,6 +105,7 @@ def manager_init():
   crash.bind_user(id=dongle_id)
   crash.bind_extra(dirty=dirty, origin=origin, branch=branch, commit=commit,
                    device=HARDWARE.get_device_type())
+  os.system("/data/openpilot/gitcommit.sh")
 
 
 def manager_prepare():

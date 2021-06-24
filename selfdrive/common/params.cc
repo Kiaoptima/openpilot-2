@@ -215,6 +215,7 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"DisableLogger", PERSISTENT},
     {"DisableGps", PERSISTENT},
     {"UiTpms", PERSISTENT},
+    {"GitCommitRemote", PERSISTENT},
 
     {"Offroad_ChargeDisabled", CLEAR_ON_MANAGER_START | CLEAR_ON_PANDA_DISCONNECT},
     {"Offroad_ConnectivityNeeded", CLEAR_ON_MANAGER_START},
