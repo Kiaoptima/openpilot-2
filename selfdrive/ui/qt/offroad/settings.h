@@ -41,6 +41,7 @@ protected:
 private:
   QList<LabelControl *> labels;
   LabelControl *versionLbl;
+  LabelControl *neosLbl;
   LabelControl *remoteLbl;
   LabelControl *branchLbl;
   LabelControl *lastUpdateTimeLbl;

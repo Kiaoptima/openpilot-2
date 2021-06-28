@@ -271,19 +271,18 @@ void SoftwarePanel::showEvent(QShowEvent *event) {
 void SoftwarePanel::updateLabels() {
   Params params = Params();
   std::string brand = params.getBool("Passive") ? "대시캠" : "오픈파일럿";
+
+/*
   QList<QPair<QString, std::string>> dev_params = {
-//    {"버전", "v" + params.get("Version")},
-//    {"Git Remote", params.get("GitRemote").substr(19)},
-//    {"Git Branch", params.get("GitBranch")},
-//    {"Git Commit Local", params.get("GitCommit").substr(0, 7)},
-//    {"Git Commit Remote", params.get("GitCommitRemote"))},
-//    {"판다 펌웨어", params.get("PandaFirmwareHex")},
+    {"버전", "v" + params.get("Version")},
+    {"Git Remote", params.get("GitRemote").substr(19)},
+    {"Git Branch", params.get("GitBranch")},
+    {"Git Commit Local", params.get("GitCommit").substr(0, 7)},
+    {"Git Commit Remote", params.get("GitCommitRemote"))},
+    {"판다 펌웨어", params.get("PandaFirmwareHex")},
     {"NEOS 버전", Hardware::get_os_version()},
   };
 
-  QString version = QString::fromStdString("v" + params.get("Version"));
-  QString remote = QString::fromStdString(params.get("GitRemote").substr(19)).trimmed();
-  QString branch = QString::fromStdString(params.get("GitBranch")).trimmed();
   QString lastUpdateTime = "";
 
   std::string last_update_param = params.get("LastUpdateTime");
@@ -293,10 +292,7 @@ void SoftwarePanel::updateLabels() {
   }
 
   if (true) {
-    versionLbl = new LabelControl("버전", version, QString::fromStdString(params.get("ReleaseNotes")).trimmed());
-    layout()->addWidget(versionLbl);
-    layout()->addWidget(horizontal_line());
-/*
+
     lastUpdateTimeLbl = new LabelControl("최종 업데이트", lastUpdateTime, "");
     layout()->addWidget(lastUpdateTimeLbl);
 
@@ -312,6 +308,15 @@ void SoftwarePanel::updateLabels() {
     }, "", this);
     layout()->addWidget(updateButton);
 */
+  QString version = QString::fromStdString("v" + params.get("Version"));
+  QString neos = QString::fromStdString(Hardware::get_os_version());
+  QString remote = QString::fromStdString(params.get("GitRemote").substr(19)).trimmed();
+  QString branch = QString::fromStdString(params.get("GitBranch")).trimmed();
+
+    versionLbl = new LabelControl("버전", version, "");
+    neosLbl = new LabelControl("NEOS", neos, "");
+    layout()->addWidget(versionLbl);
+    layout()->addWidget(horizontal_line());
     remoteLbl = new LabelControl("Git Remote", remote, "");
     layout()->addWidget(remoteLbl);
     branchLbl = new LabelControl("Git Branch", branch, "");
@@ -339,6 +344,7 @@ void SoftwarePanel::updateLabels() {
     layout()->addWidget(horizontal_line());
   }
 
+/*
   for (int i = 0; i < dev_params.size(); i++) {
     const auto &[name, value] = dev_params[i];
     QString val = QString::fromStdString(value).trimmed();
@@ -351,6 +357,7 @@ void SoftwarePanel::updateLabels() {
         layout()->addWidget(horizontal_line());
       }
     }
+*/
   }
 }
 
