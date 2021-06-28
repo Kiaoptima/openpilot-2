@@ -332,7 +332,7 @@ void SoftwarePanel::updateLabels() {
                                       }));
   layout()->addWidget(horizontal_line());
   const char* panda_flash = "/data/openpilot/panda/board/flash.sh ''";
-  layout()->addWidget(new ButtonControl("판다 펌웨어 플래싱", "실행", """, [=]() {
+  layout()->addWidget(new ButtonControl("판다 펌웨어 플래싱", "실행", "", [=]() {
                                         if (ConfirmationDialog::confirm("실행하시겠습니까?")) {
                                           std::system(panda_flash);
                                         }
