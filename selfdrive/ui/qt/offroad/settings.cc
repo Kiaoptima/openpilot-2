@@ -357,9 +357,9 @@ void SoftwarePanel::updateLabels() {
         layout()->addWidget(horizontal_line());
       }
     }
-*/
   }
 }
+*/
 
 QWidget * network_panel(QWidget * parent) {
   QVBoxLayout *layout = new QVBoxLayout;
