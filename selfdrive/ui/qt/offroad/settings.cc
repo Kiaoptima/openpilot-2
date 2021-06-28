@@ -309,39 +309,40 @@ void SoftwarePanel::updateLabels() {
     layout()->addWidget(updateButton);
 */
   QString version = QString::fromStdString("v" + params.get("Version"));
-  QString neos = Hardware::get_os_version();
+  QString neos = QString::fromStdString(Hardware::get_os_version());
   QString remote = QString::fromStdString(params.get("GitRemote").substr(19)).trimmed();
   QString branch = QString::fromStdString(params.get("GitBranch")).trimmed();
 
-    versionLbl = new LabelControl("버전", version, "");
-    neosLbl = new LabelControl("NEOS", neos, "");
-    layout()->addWidget(versionLbl);
-    layout()->addWidget(horizontal_line());
-    remoteLbl = new LabelControl("Git Remote", remote, "");
-    layout()->addWidget(remoteLbl);
-    branchLbl = new LabelControl("Git Branch", branch, "");
-    layout()->addWidget(branchLbl);
-    layout()->addWidget(new GitHash());
-    const char* gitpull = "/data/openpilot/gitpull.sh ''";
-    layout()->addWidget(new ButtonControl("Git Pull", "실행", "사용중인 브랜치의 최근 수정된 내용으로 변경됩니다.", [=]() {
+  versionLbl = new LabelControl("버전", version, "");
+  neosLbl = new LabelControl("NEOS", neos, "");
+  remoteLbl = new LabelControl("Git Remote", remote, "");
+  branchLbl = new LabelControl("Git Branch", branch, "");
+
+  layout()->addWidget(versionLbl);
+  layout()->addWidget(neosLbl);
+  layout()->addWidget(horizontal_line());
+  layout()->addWidget(remoteLbl);
+  layout()->addWidget(branchLbl);
+  layout()->addWidget(new GitHash());
+  const char* gitpull = "/data/openpilot/gitpull.sh ''";
+  layout()->addWidget(new ButtonControl("Git Pull", "실행", "사용중인 브랜치의 최근 수정된 내용으로 변경됩니다.", [=]() {
                                         if (ConfirmationDialog::confirm("실행하시겠습니까?")){
                                           std::system(gitpull);
                                         }
                                       }));
-    layout()->addWidget(horizontal_line());
-    const char* panda_flash = "/data/openpilot/panda/board/flash.sh ''";
-    layout()->addWidget(new ButtonControl("판다 펌웨어 플래싱", "실행", """, [=]() {
+  layout()->addWidget(horizontal_line());
+  const char* panda_flash = "/data/openpilot/panda/board/flash.sh ''";
+  layout()->addWidget(new ButtonControl("판다 펌웨어 플래싱", "실행", """, [=]() {
                                         if (ConfirmationDialog::confirm("실행하시겠습니까?")) {
                                           std::system(panda_flash);
                                         }
                                       }));
-    const char* panda_recover = "/data/openpilot/panda/board/recover.sh ''";
-    layout()->addWidget(new ButtonControl("판다 펌웨어 복구", "실행", "", [=]() {
+  const char* panda_recover = "/data/openpilot/panda/board/recover.sh ''";
+  layout()->addWidget(new ButtonControl("판다 펌웨어 복구", "실행", "", [=]() {
                                         if (ConfirmationDialog::confirm("실행하시겠습니까?")) {
                                           std::system(panda_recover);
                                         }
                                       }));
-    layout()->addWidget(horizontal_line());
   }
 
 /*
