@@ -309,7 +309,7 @@ void SoftwarePanel::updateLabels() {
     layout()->addWidget(updateButton);
 */
   QString version = QString::fromStdString("v" + params.get("Version"));
-  QString neos = QString::fromStdString(Hardware::get_os_version());
+  QString neos = Hardware::get_os_version();
   QString remote = QString::fromStdString(params.get("GitRemote").substr(19)).trimmed();
   QString branch = QString::fromStdString(params.get("GitBranch")).trimmed();
 
@@ -330,13 +330,13 @@ void SoftwarePanel::updateLabels() {
                                       }));
     layout()->addWidget(horizontal_line());
     const char* panda_flash = "/data/openpilot/panda/board/flash.sh ''";
-    layout()->addWidget(new ButtonControl("판다 펌웨어 플래싱", "실행", "판다 펌웨어 플래싱을 실행합니다.", [=]() {
+    layout()->addWidget(new ButtonControl("판다 펌웨어 플래싱", "실행", """, [=]() {
                                         if (ConfirmationDialog::confirm("실행하시겠습니까?")) {
                                           std::system(panda_flash);
                                         }
                                       }));
     const char* panda_recover = "/data/openpilot/panda/board/recover.sh ''";
-    layout()->addWidget(new ButtonControl("판다 펌웨어 복구", "실행", "판다 펌웨어 복구를 실행합니다.", [=]() {
+    layout()->addWidget(new ButtonControl("판다 펌웨어 복구", "실행", "", [=]() {
                                         if (ConfirmationDialog::confirm("실행하시겠습니까?")) {
                                           std::system(panda_recover);
                                         }
