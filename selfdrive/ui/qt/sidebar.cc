@@ -59,11 +59,11 @@ void Sidebar::updateState(const UIState &s) {
 
   auto last_ping = deviceState.getLastAthenaPingTime();
   if (last_ping == 0) {
-    setProperty("connectStr", "오프라인");
+    setProperty("connectStr", "offline");
     setProperty("connectStatus", warning_color);
   } else {
     bool online = nanos_since_boot() - last_ping < 80e9;
-    setProperty("connectStr",  online ? "온라인" : "오류");
+    setProperty("connectStr",  online ? "Online" : "Error");
     setProperty("connectStatus", online ? good_color : danger_color);
   }
 
@@ -77,7 +77,7 @@ void Sidebar::updateState(const UIState &s) {
   setProperty("tempStatus", tempStatus);
   setProperty("tempVal", (int)deviceState.getAmbientTempC());
 
-  QString pandaStr = "차량\n연결됨";
+  QString pandaStr = "Vehicle\nConnected";
   QColor pandaStatus = good_color;
   if (s.scene.pandaType == cereal::PandaState::PandaType::UNKNOWN) {
     pandaStatus = danger_color;
