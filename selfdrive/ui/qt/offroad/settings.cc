@@ -135,9 +135,10 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
                                         "운전자 모니터링 카메라를 미리보고 최적의 장착위치를 찾아보세요.",
                                         [=]() { emit showDriverView(); }, "", this));
 
-  QString resetCalibDesc = "장치장착시 (pitch) ↕ 5˚이내 / (yaw) ↔ 4˚이내에 장착해야 합니다.";
-  ButtonControl *resetCalibBtn = new ButtonControl("캘리브레이션 정보", "확인", resetCalibDesc, [=]() {
-    QString desc = "(pitch) ↕ 5˚이내 \n(yaw) ↔ 4˚이내";
+  QString resetCalibDesc = "(pitch) ↕ 5˚이내 \n(yaw) ↔ 4˚이내";
+
+  ButtonControl *resetCalibBtn = new ButtonControl("캘리브레이션 정보", "확인", "", [=]() {
+    QString desc = resetCalibDesc;
     std::string calib_bytes = Params().get("CalibrationParams");
     if (!calib_bytes.empty()) {
       try {
@@ -148,17 +149,18 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
           double pitch = calib.getRpyCalib()[1] * (180 / M_PI);
           double yaw = calib.getRpyCalib()[2] * (180 / M_PI);
           desc += QString("\n현재 장착된 위치는 [ %1° %2 / %3° %4 ] 입니다.")
-                                .arg(QString::number(std::abs(pitch), 'g', 1), pitch > 0 ? "↑" : "↓",
-                                     QString::number(std::abs(yaw), 'g', 1), yaw > 0 ? "→" : "←");
+                     .arg(QString::number(std::abs(pitch), 'g', 1), pitch > 0 ? "↑" : "↓",
+                            QString::number(std::abs(yaw), 'g', 1), yaw > 0 ? "→" : "←");
         }
       } catch (kj::Exception) {
-        qInfo() << "캘리브레이션 파라미터가 유효하지않습니다";
+        qInfo() << "캘리브레이션 상태가 유효하지않습니다";
       }
     }
     if (ConfirmationDialog::confirm(desc)) {
       //Params().remove("CalibrationParams");
     }
   }, "", this);
+
   connect(resetCalibBtn, &ButtonControl::showDescription, [=]() {
     QString desc = resetCalibDesc;
     std::string calib_bytes = Params().get("CalibrationParams");
@@ -171,15 +173,16 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
           double pitch = calib.getRpyCalib()[1] * (180 / M_PI);
           double yaw = calib.getRpyCalib()[2] * (180 / M_PI);
           desc += QString("\n현재 장착된 위치는 [ %1° %2 / %3° %4 ] 입니다.")
-                                .arg(QString::number(std::abs(pitch), 'g', 1), pitch > 0 ? "↑" : "↓",
-                                     QString::number(std::abs(yaw), 'g', 1), yaw > 0 ? "→" : "←");
+                     .arg(QString::number(std::abs(pitch), 'g', 1), pitch > 0 ? "↑" : "↓",
+                            QString::number(std::abs(yaw), 'g', 1), yaw > 0 ? "→" : "←");
         }
       } catch (kj::Exception) {
-        qInfo() << "캘리브레이션 파라미터가 유효하지않습니다";
+        qInfo() << "캘리브레이션 상태가 유효하지않습니다";
       }
     }
     resetCalibBtn->setDescription(desc);
   });
+
   offroad_btns.append(resetCalibBtn);
 
   for(auto &btn : offroad_btns){
@@ -325,7 +328,7 @@ void SoftwarePanel::updateLabels() {
   layout()->addWidget(branchLbl);
   layout()->addWidget(new GitHash());
   const char* gitpull = "/data/openpilot/gitpull.sh ''";
-  layout()->addWidget(new ButtonControl("Git Pull", "실행", "사용중인 브랜치의 최근 수정된 내용으로 변경됩니다.", [=]() {
+  layout()->addWidget(new ButtonControl("Git Pull", "실행", "", [=]() {
                                         if (ConfirmationDialog::confirm("실행하시겠습니까?")){
                                           std::system(gitpull);
                                         }
