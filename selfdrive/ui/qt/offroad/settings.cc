@@ -109,7 +109,7 @@ TogglesPanel::TogglesPanel(QWidget *parent) : QWidget(parent) {
     main_layout->addWidget(toggle);
   }
   main_layout->addWidget(horizontal_line());
-  main_layout->addWidget(new LabelControl("▼ 커뮤니티 추가기능 토글", ""));
+  main_layout->addWidget(new LabelControl(" ▼  커뮤니티 추가기능 토글", ""));
   main_layout->addWidget(new ParamControl("PutPrebuilt", "Prebuilt Enable",
                                   //"Create prebuilt files to speed bootup",
                                   "Prebuilt 파일을 생성하며 부팅속도를 향상시킵니다.",
