@@ -67,12 +67,12 @@ void Sidebar::updateState(const UIState &s) {
       setProperty("connectStr", "NO\nPRIME");
       setProperty("connectStatus", danger_color);
     } else {
-      setProperty("connectStr", "CONNECT\n오프라인");
+      setProperty("connectStr", "NET\noffline");
       setProperty("connectStatus", warning_color);
     }
   } else {
     bool online = nanos_since_boot() - last_ping < 80e9;
-    setProperty("connectStr",  (online ? "CONNECT\nonline" : "CONNECT\nerror"));
+    setProperty("connectStr",  (online ? "NET\nonline" : "NET\nerror"));
     setProperty("connectStatus", online ? good_color : danger_color);
   }
 
@@ -87,12 +87,12 @@ void Sidebar::updateState(const UIState &s) {
   setProperty("tempVal", (int)deviceState.getAmbientTempC());
 
   //QString pandaStr = "VEHICLE\nONLINE";
-  QString pandaStr = "Car\nConnected";
+  QString pandaStr = "Car\nONLINE";
   QColor pandaStatus = good_color;
   if (s.scene.pandaType == cereal::PandaState::PandaType::UNKNOWN) {
     pandaStatus = danger_color;
     //pandaStr = "NO\nPANDA";
-    pandaStr = "Car\nNot Connected";
+    pandaStr = "Car\nOFFLINE";
 //  } else if (s.scene.started && !sm["liveLocationKalman"].getLiveLocationKalman().getGpsOK()) {
 //    pandaStatus = warning_color;
 //    pandaStr = "GPS\nSEARCHING";
@@ -150,7 +150,7 @@ void Sidebar::paintEvent(QPaintEvent *event) {
     p.drawText(r2, Qt::AlignCenter, net_type);
 
   // metrics
-  drawMetric(p, "시스템온도", QString("%1°C").arg(temp_val), temp_status, 338);
+  drawMetric(p, "TEMP", QString("%1°C").arg(temp_val), temp_status, 338);
   drawMetric(p, panda_str, "", panda_status, 518);
   drawMetric(p, connect_str, "", connect_status, 676);
 }
