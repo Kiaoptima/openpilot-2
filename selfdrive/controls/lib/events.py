@@ -387,7 +387,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
       "Take control",
       "Lane departure detected",
       AlertStatus.userPrompt, AlertSize.mid,
-      Priority.LOW, VisualAlert.ldw, AudibleAlert.chimePrompt, .1, 2., 3.),
+      Priority.MID, VisualAlert.ldw, AudibleAlert.chimePrompt, .1, 2., 3.),
   },
 
   # ********** events only containing alerts that display while engaged **********
