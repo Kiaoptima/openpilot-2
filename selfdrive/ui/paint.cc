@@ -460,7 +460,7 @@ static void bb_ui_draw_measures_right(UIState *s, int bb_x, int bb_y, int bb_w) 
       }
     snprintf(val_str, sizeof(val_str), "%.0f", (round((scene->cpuTempAvg))));
     strcat(val_str, val_add);
-    bb_h += bb_ui_draw_measure(s, val_str, "CPU 온도", bb_rx, bb_ry, val_color, lab_color, value_fontSize, label_fontSize);
+    bb_h += bb_ui_draw_measure(s, val_str, "CPU TEMP", bb_rx, bb_ry, val_color, lab_color, value_fontSize, label_fontSize);
     bb_ry = bb_y + bb_h;
   }
 
@@ -537,7 +537,7 @@ static void bb_ui_draw_measures_right(UIState *s, int bb_x, int bb_y, int bb_w) 
       // steering is in degree
       snprintf(val_str, sizeof(val_str), "%.1f",(angleSteers));
     strcat(val_str, val_add);
-    bb_h += bb_ui_draw_measure(s, val_str, "핸들 조향각", bb_rx, bb_ry, val_color, lab_color, value_fontSize, label_fontSize);
+    bb_h += bb_ui_draw_measure(s, val_str, "STR ANG", bb_rx, bb_ry, val_color, lab_color, value_fontSize, label_fontSize);
     bb_ry = bb_y + bb_h;
   }
 
@@ -566,7 +566,7 @@ static void bb_ui_draw_measures_right(UIState *s, int bb_x, int bb_y, int bb_w) 
       snprintf(val_str, sizeof(val_str), "-");
     }
     strcat(val_str, val_add);
-    bb_h += bb_ui_draw_measure(s, val_str, "OP 조향각", bb_rx, bb_ry, val_color, lab_color, value_fontSize, label_fontSize);
+    bb_h += bb_ui_draw_measure(s, val_str, "OP STR ANG", bb_rx, bb_ry, val_color, lab_color, value_fontSize, label_fontSize);
     bb_ry = bb_y + bb_h;
   }
 
@@ -581,7 +581,7 @@ static void bb_ui_draw_measures_right(UIState *s, int bb_x, int bb_y, int bb_w) 
     } else if (s->scene.lateralControlSelect == 2) {
       snprintf(val_str, sizeof(val_str), "LQR");
     }
-    bb_h += bb_ui_draw_measure(s, val_str, "조향로직", bb_rx, bb_ry, val_color, lab_color, value_fontSize, label_fontSize);
+    bb_h += bb_ui_draw_measure(s, val_str, "LAT CTRL", bb_rx, bb_ry, val_color, lab_color, value_fontSize, label_fontSize);
     bb_ry = bb_y + bb_h;
   }
 
