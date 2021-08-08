@@ -72,7 +72,7 @@ void Sidebar::updateState(const UIState &s) {
     }
   } else {
     bool online = nanos_since_boot() - last_ping < 80e9;
-    setProperty("connectStr",  (online ? "CONNECT\n온라인" : "CONNECT\n오류"));
+    setProperty("connectStr",  (online ? "CONNECT\nonline" : "CONNECT\nerror"));
     setProperty("connectStatus", online ? good_color : danger_color);
   }
 
@@ -87,17 +87,17 @@ void Sidebar::updateState(const UIState &s) {
   setProperty("tempVal", (int)deviceState.getAmbientTempC());
 
   //QString pandaStr = "VEHICLE\nONLINE";
-  QString pandaStr = "차량\n연결됨";
+  QString pandaStr = "Car\nConnected";
   QColor pandaStatus = good_color;
   if (s.scene.pandaType == cereal::PandaState::PandaType::UNKNOWN) {
     pandaStatus = danger_color;
     //pandaStr = "NO\nPANDA";
-    pandaStr = "차량\n연결안됨";
+    pandaStr = "Car\nNot Connected";
 //  } else if (s.scene.started && !sm["liveLocationKalman"].getLiveLocationKalman().getGpsOK()) {
 //    pandaStatus = warning_color;
 //    pandaStr = "GPS\nSEARCHING";
   } else if (s.scene.satelliteCount > 0) {
-    pandaStr = QString("위성수 %1\n정확도 %2").arg(s.scene.satelliteCount).arg(fmin(10, s.scene.gpsAccuracy), 0, 'f', 2);
+    pandaStr = QString("Number of satellites %1\nAccuracy %2").arg(s.scene.satelliteCount).arg(fmin(10, s.scene.gpsAccuracy), 0, 'f', 2);
     pandaStatus = sm["liveLocationKalman"].getLiveLocationKalman().getGpsOK() ? good_color : warning_color;
   }
   setProperty("pandaStr", pandaStr);
@@ -127,7 +127,6 @@ void Sidebar::paintEvent(QPaintEvent *event) {
     p.drawEllipse(x, 196, 27, 27);
     x += 37;
   }
-
   configFont(p, "Open Sans", 35, "Regular");
   p.setPen(QColor(0xff, 0xff, 0xff));
   const QRect r = QRect(50, 247, 100, 50);
