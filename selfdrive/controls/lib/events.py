@@ -154,14 +154,14 @@ class NoEntryAlert(Alert):
 
 class SoftDisableAlert(Alert):
   def __init__(self, alert_text_2):
-    super().__init__("grab the wheel immediately", alert_text_2,
+    super().__init__("Take control immediately", alert_text_2,
                      AlertStatus.critical, AlertSize.full,
                      Priority.MID, VisualAlert.steerRequired,
                      AudibleAlert.chimeWarningRepeat, .1, 2., 2.),
 
 
 class ImmediateDisableAlert(Alert):
-  def __init__(self, alert_text_2, alert_text_1="grab the wheel immediately"):
+  def __init__(self, alert_text_2, alert_text_1="Take control immediately"):
     super().__init__(alert_text_1, alert_text_2,
                      AlertStatus.critical, AlertSize.full,
                      Priority.HIGHEST, VisualAlert.steerRequired,
@@ -199,7 +199,7 @@ def calibration_incomplete_alert(CP: car.CarParams, sm: messaging.SubMaster, met
   unit = "㎞/h" if metric else "mph"
   return Alert(
     "Calibration in progress : %d%%" % sm['liveCalibration'].calPerc,
-    "Drive above %d %s speed" % (speed, unit),
+    "Drive above %d %s " % (speed, unit),
     AlertStatus.normal, AlertSize.mid,
     Priority.LOWEST, VisualAlert.none, AudibleAlert.none, 0., 0., .2)
 
@@ -260,7 +260,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   },
 
   EventName.controlsInitializing: {
-    ET.NO_ENTRY: NoEntryAlert("프로세스 초기화중입니다"),
+    ET.NO_ENTRY: NoEntryAlert("Process is initializing"),
   },
 
   EventName.startup: {
@@ -282,8 +282,8 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   # Car is recognized, but marked as dashcam only
   EventName.startupNoControl: {
     ET.PERMANENT: Alert(
-      "dash cam mode",
-      "Always keep hands on the wheel and eyes on the road",
+      "Dash cam mode",
+      "Always keep hands on wheel and eyes on road",
       AlertStatus.normal, AlertSize.mid,
       Priority.LOWER, VisualAlert.none, AudibleAlert.chimeDisengage2, 1., 0., 15.),
   },
@@ -291,8 +291,8 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   # Car is not recognized
   EventName.startupNoCar: {
     ET.PERMANENT: Alert(
-      "dash cam mode : incompatible vehicle",
-      "Always keep hands on the wheel and eyes on the road",
+      "Dash cam mode : incompatible vehicle",
+      "Always keep hands on wheel and eyes on road",
       AlertStatus.normal, AlertSize.mid,
       Priority.LOWER, VisualAlert.none, AudibleAlert.chimeDisengage2, 1., 0., 15.),
   },
@@ -311,7 +311,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.startupNoFw: {
     ET.PERMANENT: Alert(
-      "vehicle not recognized",
+      "Vehicle not recognized",
       "Check the connection status",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.LOWER, VisualAlert.none, AudibleAlert.none, 0., 0., 15.),
@@ -319,7 +319,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.dashcamMode: {
     ET.PERMANENT: Alert(
-      "dash cam mode",
+      "Dash cam mode",
       "",
       AlertStatus.normal, AlertSize.small,
       Priority.LOWEST, VisualAlert.none, AudibleAlert.none, 0., 0., .2),
@@ -350,7 +350,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   # See https://github.com/commaai/openpilot/wiki/Fingerprinting for more information
   EventName.carUnrecognized: {
     ET.PERMANENT: Alert(
-      "dash cam mode",
+      "Dash cam mode",
       "Vehicle not recognized",
       AlertStatus.normal, AlertSize.mid,
       Priority.LOWEST, VisualAlert.none, AudibleAlert.none, 0., 0., .2),
@@ -358,7 +358,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.stockAeb: {
     ET.PERMANENT: Alert(
-      "brake!",
+      "Brake!",
       "Collision risk",
       AlertStatus.critical, AlertSize.full,
       Priority.HIGHEST, VisualAlert.fcw, AudibleAlert.none, 1., 2., 2.),
@@ -367,7 +367,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.stockFcw: {
     ET.PERMANENT: Alert(
-      "brake!",
+      "Brake!",
       "Collision risk",
       AlertStatus.critical, AlertSize.full,
       Priority.HIGHEST, VisualAlert.fcw, AudibleAlert.none, 1., 2., 2.),
@@ -376,7 +376,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.fcw: {
     ET.PERMANENT: Alert(
-      "brake!",
+      "Brake!",
       "Collision risk",
       AlertStatus.critical, AlertSize.full,
       Priority.HIGHEST, VisualAlert.fcw, AudibleAlert.chimeWarningRepeat, 1., 2., 2.),
@@ -384,7 +384,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.ldw: {
     ET.PERMANENT: Alert(
-      "hold the wheel",
+      "Take control",
       "Lane departure detected",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.LOW, VisualAlert.ldw, AudibleAlert.chimePrompt, .1, 2., 3.),
@@ -476,8 +476,8 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.manualRestart: {
     ET.WARNING: Alert(
-      "Hold the wheel",
-      "Manually reactivate",
+      "Take control",
+      "Reactivate manually",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.LOW, VisualAlert.none, AudibleAlert.none, 0., 0., .2),
   },
@@ -553,12 +553,12 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   # current GPS position. This alert is thrown when the localizer is reset
   # more often than expected.
   EventName.localizerMalfunction: {
-    ET.PERMANENT: NormalPermanentAlert("센서 Malfunction", "Check the device"),
+    ET.PERMANENT: NormalPermanentAlert("Localizer Malfunction", "Check the device"),
   },
 
   EventName.turningIndicatorOn: {
     ET.WARNING: Alert(
-      "Hold steering wheel while",
+      "Take control while",
       "turn indicator is on",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.MID, VisualAlert.none, AudibleAlert.none, .0, .1, .2),
@@ -596,17 +596,17 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.brakeHold: {
     ET.USER_DISABLE: EngagementAlert(AudibleAlert.chimeDisengage),
-    ET.NO_ENTRY: NoEntryAlert("brake 감지됨"),
+    ET.NO_ENTRY: NoEntryAlert("brake detected"),
   },
 
   EventName.parkBrake: {
     ET.USER_DISABLE: EngagementAlert(AudibleAlert.chimeDisengage),
-    ET.NO_ENTRY: NoEntryAlert("주차 brake를 해제하세요"),
+    ET.NO_ENTRY: NoEntryAlert("Parking brake"),
   },
 
   EventName.pedalPressed: {
     ET.USER_DISABLE: EngagementAlert(AudibleAlert.chimeDisengage),
-    ET.NO_ENTRY: NoEntryAlert("brake 감지됨",
+    ET.NO_ENTRY: NoEntryAlert("brake detected",
                               visual_alert=VisualAlert.brakePressed),
   },
 
@@ -617,31 +617,31 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.wrongCruiseMode: {
     ET.USER_DISABLE: EngagementAlert(AudibleAlert.chimeDisengage),
-    ET.NO_ENTRY: NoEntryAlert("어뎁티브cruise를 활성화하세요"),
+    ET.NO_ENTRY: NoEntryAlert("Activate Adaptive Cruise"),
   },
 
   EventName.steerTempUnavailable: {
     ET.WARNING: Alert(
-      "hold the wheel",
-      "Steering control temporarily unavailable",
+      "Take control",
+      "Steering temporarily unavailable",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, 0., 0., .2),
-    ET.NO_ENTRY: NoEntryAlert("Steering control temporarily unavailable",
+    ET.NO_ENTRY: NoEntryAlert("Steering temporarily unavailable",
                               duration_hud_alert=0.),
   },
 
   EventName.outOfSpace: {
     ET.PERMANENT: Alert(
-      "저장공간 부족",
+      "Insufficient storage space",
       "",
       AlertStatus.normal, AlertSize.small,
       Priority.LOWER, VisualAlert.none, AudibleAlert.none, 0., 0., .2),
-    ET.NO_ENTRY: NoEntryAlert("저장공간 부족",
+    ET.NO_ENTRY: NoEntryAlert("Insufficient storage space",
                               duration_hud_alert=0.),
   },
 
   EventName.belowEngageSpeed: {
-    ET.NO_ENTRY: NoEntryAlert("please speed up"),
+    ET.NO_ENTRY: NoEntryAlert("Below engage speed"),
   },
 
   EventName.sensorDataInvalid: {
@@ -668,12 +668,12 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.overheat: {
     ET.PERMANENT: Alert(
-      "device overheated",
+      "Device overheated",
       "",
       AlertStatus.normal, AlertSize.small,
       Priority.LOWER, VisualAlert.none, AudibleAlert.none, 0., 0., .2),
-    ET.SOFT_DISABLE: SoftDisableAlert("device overheated"),
-    ET.NO_ENTRY: NoEntryAlert("device overheated"),
+    ET.SOFT_DISABLE: SoftDisableAlert("Device overheated"),
+    ET.NO_ENTRY: NoEntryAlert("Device overheated"),
   },
 
   EventName.wrongGear: {
@@ -701,17 +701,17 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.doorOpen: {
     ET.PERMANENT: Alert(
-      "door open",
+      "Door open",
       "",
       AlertStatus.normal, AlertSize.full,
       Priority.LOWEST, VisualAlert.none, AudibleAlert.none, 0., 0., .2, creation_delay=0.5),
     ET.USER_DISABLE: EngagementAlert(AudibleAlert.chimeDisengage),
-    ET.NO_ENTRY: NoEntryAlert("door open"),
+    ET.NO_ENTRY: NoEntryAlert("Door open"),
   },
 
   EventName.seatbeltNotLatched: {
     ET.PERMANENT: Alert(
-      "not wearing seat belt",
+      "Check seat belt",
       "",
       AlertStatus.normal, AlertSize.full,
       Priority.LOWEST, VisualAlert.none, AudibleAlert.none, 0., 0., .2, creation_delay=0.5),
@@ -726,8 +726,8 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   },
 
   EventName.lowBattery: {
-    ET.SOFT_DISABLE: SoftDisableAlert("low battery"),
-    ET.NO_ENTRY: NoEntryAlert("low battery"),
+    ET.SOFT_DISABLE: SoftDisableAlert("Battery low"),
+    ET.NO_ENTRY: NoEntryAlert("Battery low"),
   },
 
   # Different openpilot services communicate between each other at a certain
@@ -747,8 +747,8 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   },
 
   EventName.radarFault: {
-    ET.SOFT_DISABLE: SoftDisableAlert("radar error : restart your vehicle"),
-    ET.NO_ENTRY: NoEntryAlert("radar error : restart your vehicle"),
+    ET.SOFT_DISABLE: SoftDisableAlert("Radar error : restart your vehicle"),
+    ET.NO_ENTRY: NoEntryAlert("Radar error : restart your vehicle"),
   },
 
   # Every frame from the camera should be processed by the model. If modeld
@@ -765,8 +765,8 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   # usually means the model has trouble understanding the scene. This is used
   # as a heuristic to warn the driver.
   EventName.posenetInvalid: {
-    ET.SOFT_DISABLE: SoftDisableAlert("Please drive carefully as the lane recognition condition is poor."),
-    ET.NO_ENTRY: NoEntryAlert("Please drive carefully as the lane recognition condition is poor."),
+    ET.SOFT_DISABLE: SoftDisableAlert("Lane recognition condition is poor."),
+    ET.NO_ENTRY: NoEntryAlert("Lane recognition condition is poor."),
   },
 
   # When the localizer detects an acceleration of more than 40 m/s^2 (~4G) we
@@ -784,27 +784,27 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   },
 
   EventName.accFaulted: {
-    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("cruise error"),
-    ET.PERMANENT: NormalPermanentAlert("cruise error", ""),
-    ET.NO_ENTRY: NoEntryAlert("cruise error"),
+    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("Cruise error"),
+    ET.PERMANENT: NormalPermanentAlert("Cruise error", ""),
+    ET.NO_ENTRY: NoEntryAlert("Cruise error"),
   },
 
   EventName.controlsMismatch: {
-    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("control mismatch"),
+    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("Control mismatch"),
   },
 
   EventName.roadCameraError: {
-    ET.PERMANENT: NormalPermanentAlert("driving camera error", "",
+    ET.PERMANENT: NormalPermanentAlert("Driving camera error", "",
                                        duration_text=10.),
   },
 
   EventName.driverCameraError: {
-    ET.PERMANENT: NormalPermanentAlert("driver camera error", "",
+    ET.PERMANENT: NormalPermanentAlert("Driver camera error", "",
                                        duration_text=10.),
   },
 
   EventName.wideRoadCameraError: {
-    ET.PERMANENT: NormalPermanentAlert("wide driving camera error", "",
+    ET.PERMANENT: NormalPermanentAlert("Wide driving camera error", "",
                                        duration_text=10.),
   },
 
@@ -841,37 +841,37 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   },
 
   EventName.brakeUnavailable: {
-    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("cruise error : restart your vehicle"),
+    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("Cruise error : restart your vehicle"),
     ET.PERMANENT: Alert(
-      "cruise error : restart your vehicle",
+      "Cruise error : restart your vehicle",
       "",
       AlertStatus.normal, AlertSize.small,
       Priority.LOWER, VisualAlert.none, AudibleAlert.none, 0., 0., .2),
-    ET.NO_ENTRY: NoEntryAlert("cruise error : restart your vehicle"),
+    ET.NO_ENTRY: NoEntryAlert("Cruise error : restart your vehicle"),
   },
 
   EventName.reverseGear: {
     ET.PERMANENT: Alert(
-      "gear [R] state",
+      "Gear in [R]",
       "",
       AlertStatus.normal, AlertSize.full,
       Priority.LOWEST, VisualAlert.none, AudibleAlert.none, 0., 0., .2, creation_delay=0.5),
     ET.USER_DISABLE: EngagementAlert(AudibleAlert.chimeDisengage),
-    ET.NO_ENTRY: NoEntryAlert("gear [R] state"),
+    ET.NO_ENTRY: NoEntryAlert("Gear in [R]"),
   },
 
   # On cars that use stock ACC the car can decide to cancel ACC for various reasons.
   # When this happens we can no long control the car so the user needs to be warned immediately.
   EventName.cruiseDisabled: {
-    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("cruise off"),
+    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("Cruise off"),
   },
 
   # For planning the trajectory Model Predictive Control (MPC) is used. This is
   # an optimization algorithm that is not guaranteed to find a feasible solution.
   # If no solution is found or the solution has a very high cost this alert is thrown.
   EventName.plannerError: {
-    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("planner solution error"),
-    ET.NO_ENTRY: NoEntryAlert("planner solution error"),
+    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("Planner solution error"),
+    ET.NO_ENTRY: NoEntryAlert("Planner solution error"),
   },
 
   # When the relay in the harness box opens the CAN bus between the LKAS camera
@@ -879,9 +879,9 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   # are received on the car side this usually means the relay hasn't opened correctly
   # and this alert is thrown.
   EventName.relayMalfunction: {
-    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("harness malfunction"),
-    ET.PERMANENT: NormalPermanentAlert("harness malfunction", "Check the device"),
-    ET.NO_ENTRY: NoEntryAlert("harness malfunction"),
+    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("Harness malfunction"),
+    ET.PERMANENT: NormalPermanentAlert("Harness malfunction", "Check the device"),
+    ET.NO_ENTRY: NoEntryAlert("Harness malfunction"),
   },
 
   EventName.noTarget: {
@@ -896,7 +896,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   EventName.speedTooLow: {
     ET.IMMEDIATE_DISABLE: Alert(
       "Unable to use open pilot",
-      "Speed ​​too low",
+      "Speed too low",
       AlertStatus.normal, AlertSize.mid,
       Priority.HIGH, VisualAlert.none, AudibleAlert.chimeDisengage, .4, 2., 3.),
   },
@@ -904,12 +904,12 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   # When the car is driving faster than most cars in the training data the model outputs can be unpredictable
   EventName.speedTooHigh: {
     ET.WARNING: Alert(
-      "speed is too high",
+      "Speed is too high",
       "please slow down",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.chimeWarning2Repeat, 2.2, 3., 4.),
     ET.NO_ENTRY: Alert(
-      "speed is too high",
+      "Speed is too high",
       "Slow down",
       AlertStatus.normal, AlertSize.mid,
       Priority.LOW, VisualAlert.none, AudibleAlert.chimeError, .4, 2., 3.),
@@ -917,11 +917,11 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.lowSpeedLockout: {
     ET.PERMANENT: Alert(
-      "cruise error : restart your vehicle",
+      "Cruise error : restart your vehicle",
       "",
       AlertStatus.normal, AlertSize.small,
       Priority.LOWER, VisualAlert.none, AudibleAlert.none, 0., 0., .2),
-    ET.NO_ENTRY: NoEntryAlert("cruise error : restart your vehicle"),
+    ET.NO_ENTRY: NoEntryAlert("Cruise error : restart your vehicle"),
   },
 
 }
