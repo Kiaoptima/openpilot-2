@@ -35,7 +35,7 @@ class CarInterface(CarInterfaceBase):
     # Most Hyundai car ports are community features for now
     ret.communityFeature = True
 
-    ret.steerActuatorDelay = 0.2  # Default delay 0.1
+    ret.steerActuatorDelay = 0.1  # Default delay 0.1
     ret.steerRateCost = 0.5  # Default delay 0.25
     ret.steerLimitTimer = 0.8  # Default delay 1.2
     ret.maxSteeringAngleDeg = 90.
@@ -205,11 +205,11 @@ class CarInterface(CarInterfaceBase):
           ret.lateralTuning.indi.innerLoopGainBP = [0.]
           ret.lateralTuning.indi.innerLoopGainV = [5.6] # default 3.5 (4.8) rate error, Too high: jerky oscillation in high curvature, Too low: sloppy, cannot accomplish desired steer angle
           ret.lateralTuning.indi.outerLoopGainBP = [0.]
-          ret.lateralTuning.indi.outerLoopGainV = [4.4] # default 2.0 (4.2) angle error, Too high: twitchy hyper lane centering, oversteering, Too low: sloppy, all over lane
+          ret.lateralTuning.indi.outerLoopGainV = [5.4] # default 2.0 (4.2) angle error, Too high: twitchy hyper lane centering, oversteering, Too low: sloppy, all over lane
           ret.lateralTuning.indi.timeConstantBP = [0.]
-          ret.lateralTuning.indi.timeConstantV = [1.8] # default 1.4 (1.4) - Higher values == more smoothing, Too high: sloppy lane centering, Too low: noisy actuation, responds to every bump, maybe unable to maintain lane center due to rapid actuation
+          ret.lateralTuning.indi.timeConstantV = [1.4] # default 1.4 (1.4) - Higher values == more smoothing, Too high: sloppy lane centering, Too low: noisy actuation, responds to every bump, maybe unable to maintain lane center due to rapid actuation
           ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-          ret.lateralTuning.indi.actuatorEffectivenessV = [1.4] # default 2.3 (1.8) - Lower values == more steering, Too high: weak, sloppy lane centering, slow oscillation, can't follow high curvature, high steering error causes snappy corrections, Too low: overpower, saturation, jerky, fast oscillation, bang-bang control
+          ret.lateralTuning.indi.actuatorEffectivenessV = [1.8] # default 2.3 (1.8) - Lower values == more steering, Too high: weak, sloppy lane centering, slow oscillation, can't follow high curvature, high steering error causes snappy corrections, Too low: overpower, saturation, jerky, fast oscillation, bang-bang control
     # -----------------------------------------------------------------LQR
     elif Params().get("LateralControlSelect", encoding='utf8') == "2":
       if candidate in [CAR.GENESIS, CAR.GENESIS_G70, CAR.GENESIS_G80, CAR.GENESIS_G90]:
@@ -225,8 +225,8 @@ class CarInterface(CarInterfaceBase):
       elif candidate in [CAR.OPTIMA, CAR.OPTIMA_HEV]:
           ret.lateralTuning.init('lqr')
           ret.lateralTuning.lqr.scale = 1700.0
-          ret.lateralTuning.lqr.ki = 0.016
-          ret.lateralTuning.lqr.dcGain = 0.002
+          ret.lateralTuning.lqr.ki = 0.016 # default 0.016
+          ret.lateralTuning.lqr.dcGain = 0.0016 # default 0.002
           ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268]
           ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05]
           ret.lateralTuning.lqr.c = [1., 0.]
