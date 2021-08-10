@@ -203,9 +203,9 @@ class CarInterface(CarInterfaceBase):
       else:
           ret.lateralTuning.init('indi')
           ret.lateralTuning.indi.innerLoopGainBP = [0.]
-          ret.lateralTuning.indi.innerLoopGainV = [5.6] # default 3.5 (4.8) rate error, Too high: jerky oscillation in high curvature, Too low: sloppy, cannot accomplish desired steer angle
+          ret.lateralTuning.indi.innerLoopGainV = [5.6] # default 3.5 (5.6) rate error, Too high: jerky oscillation in high curvature, Too low: sloppy, cannot accomplish desired steer angle
           ret.lateralTuning.indi.outerLoopGainBP = [0.]
-          ret.lateralTuning.indi.outerLoopGainV = [5.4] # default 2.0 (4.2) angle error, Too high: twitchy hyper lane centering, oversteering, Too low: sloppy, all over lane
+          ret.lateralTuning.indi.outerLoopGainV = [5.4] # default 2.0 (5.4) angle error, Too high: twitchy hyper lane centering, oversteering, Too low: sloppy, all over lane
           ret.lateralTuning.indi.timeConstantBP = [0.]
           ret.lateralTuning.indi.timeConstantV = [1.4] # default 1.4 (1.4) - Higher values == more smoothing, Too high: sloppy lane centering, Too low: noisy actuation, responds to every bump, maybe unable to maintain lane center due to rapid actuation
           ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
@@ -225,7 +225,7 @@ class CarInterface(CarInterfaceBase):
       elif candidate in [CAR.OPTIMA, CAR.OPTIMA_HEV]:
           ret.lateralTuning.init('lqr')
           ret.lateralTuning.lqr.scale = 1700.0
-          ret.lateralTuning.lqr.ki = 0.02 # default 0.016
+          ret.lateralTuning.lqr.ki = 0.016 # default 0.016
           ret.lateralTuning.lqr.dcGain = 0.002 # default 0.002
           ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268]
           ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05]
