@@ -207,9 +207,9 @@ class CarInterface(CarInterfaceBase):
           ret.lateralTuning.indi.outerLoopGainBP = [0.]
           ret.lateralTuning.indi.outerLoopGainV = [5.4] # default 2.0 (5.4) angle error, Too high: twitchy hyper lane centering, oversteering, Too low: sloppy, all over lane
           ret.lateralTuning.indi.timeConstantBP = [0.]
-          ret.lateralTuning.indi.timeConstantV = [1.8] # default 1.4 (1.4) - Higher values == more smoothing, Too high: sloppy lane centering, Too low: noisy actuation, responds to every bump, maybe unable to maintain lane center due to rapid actuation
+          ret.lateralTuning.indi.timeConstantV = [2.0] # default 1.4 (1.4)1.8 - Higher values == more smoothing, Too high: sloppy lane centering, Too low: noisy actuation, responds to every bump, maybe unable to maintain lane center due to rapid actuation
           ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-          ret.lateralTuning.indi.actuatorEffectivenessV = [1.2] # default 2.3 (1.8) - Lower values == more steering, Too high: weak, sloppy lane centering, slow oscillation, can't follow high curvature, high steering error causes snappy corrections, Too low: overpower, saturation, jerky, fast oscillation, bang-bang control
+          ret.lateralTuning.indi.actuatorEffectivenessV = [1.0] # default 2.3 (1.8)1.2 - Lower values == more steering, Too high: weak, sloppy lane centering, slow oscillation, can't follow high curvature, high steering error causes snappy corrections, Too low: overpower, saturation, jerky, fast oscillation, bang-bang control
     # -----------------------------------------------------------------LQR
     elif Params().get("LateralControlSelect", encoding='utf8') == "2":
       if candidate in [CAR.GENESIS, CAR.GENESIS_G70, CAR.GENESIS_G80, CAR.GENESIS_G90]:
