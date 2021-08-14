@@ -471,10 +471,10 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
     {"Toggles", new TogglesPanel(this)},
     {"Software", new SoftwarePanel(this)},
 */
-    {"장치", device},
-    {"설정", network_panel(this)},
-    {"토글", new TogglesPanel(this)},
-    {"정보", new SoftwarePanel(this)},
+    {"Device", device},
+    {"Network", network_panel(this)},
+    {"Toggles", new TogglesPanel(this)},
+    {"Software", new SoftwarePanel(this)},
   };
 
 #ifdef ENABLE_MAPS
