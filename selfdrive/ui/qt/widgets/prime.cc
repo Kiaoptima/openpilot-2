@@ -149,7 +149,7 @@ SetupWidget::SetupWidget(QWidget* parent) : QFrame(parent) {
   finishRegistationLayout->setMargin(30);
 
   //QLabel* registrationDescription = new QLabel("Pair your device with the comma connect app");
-  QLabel* registrationDescription = new QLabel("COMMA CONNECT\n \n앱으로 장치와 페어링 하세요");
+  QLabel* registrationDescription = new QLabel("COMMA CONNECT\n \nPair your device with the comma connect app");
   registrationDescription->setWordWrap(true);
   registrationDescription->setAlignment(Qt::AlignCenter);
   registrationDescription->setStyleSheet(R"(
@@ -160,7 +160,7 @@ SetupWidget::SetupWidget(QWidget* parent) : QFrame(parent) {
   finishRegistationLayout->addWidget(registrationDescription);
 
   //QPushButton* finishButton = new QPushButton("Finish setup");
-  QPushButton* finishButton = new QPushButton("QR코드");
+  QPushButton* finishButton = new QPushButton("Finish setup");
   finishButton->setFixedHeight(200);
   finishButton->setStyleSheet(R"(
     border-radius: 30px;
@@ -180,7 +180,7 @@ SetupWidget::SetupWidget(QWidget* parent) : QFrame(parent) {
 
   qrLayout->addSpacing(30);
   //QLabel* qrLabel = new QLabel("Scan QR code to pair!");
-  QLabel* qrLabel = new QLabel("QR 코드를 스캔하세요");
+  QLabel* qrLabel = new QLabel("Scan QR code to pair!");
   qrLabel->setWordWrap(true);
   qrLabel->setAlignment(Qt::AlignHCenter);
   qrLabel->setStyleSheet(R"(
