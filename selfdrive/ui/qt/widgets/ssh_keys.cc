@@ -36,10 +36,10 @@ void SshControl::refresh() {
   std::string paramc = Params().get("GithubUsername");
   if (param.length() && !paramc.empty()) {
     username_label.setText(QString::fromStdString(params.get("GithubUsername")));
-    setText("Remove private key");
+    setText("DEL priv key");
   } else if (param.length() && paramc.empty()) {
     username_label.setText("Public Key");
-    setText("Remove public key");
+    setText("DEL pub key");
   } else {
     username_label.setText("");
     setText("Use of private key");
