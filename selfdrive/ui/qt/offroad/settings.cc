@@ -175,7 +175,7 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
           double pitch = calib.getRpyCalib()[1] * (180 / M_PI);
           double yaw = calib.getRpyCalib()[2] * (180 / M_PI);
           //desc += QString("\nThe current calibration location is [ %2 %1° / %4 %3° ]")
-          desc += QString("\nThe current calibration location is [ %2 %1° / %4 %3° ] 입니다.")
+          desc += QString("\nThe current calibration location is [ %2 %1° / %4 %3° ]")
                                 .arg(QString::number(std::abs(pitch), 'g', 1), pitch > 0 ? "↑" : "↓",
                                      QString::number(std::abs(yaw), 'g', 1), yaw > 0 ? "→" : "←");
         }
