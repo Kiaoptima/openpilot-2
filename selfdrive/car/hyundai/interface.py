@@ -35,8 +35,8 @@ class CarInterface(CarInterfaceBase):
     # Most Hyundai car ports are community features for now
     ret.communityFeature = True
 
-    ret.steerActuatorDelay = 0.1  # Default delay 0.1
-    ret.steerRateCost = 0.5  # Default delay 0.25
+    ret.steerActuatorDelay = 0.15  # Default delay 0.1 - Higher value and the car enters the turn earlier
+    ret.steerRateCost = 0.45  # Default delay 0.25 - tells the system how fast to respond to changing road conditions if sRC is too low it will be very "darty" and reactive if it's too high it will be sluggish 0.5 is usually fine
     ret.steerLimitTimer = 0.8  # Default delay 1.2
     ret.maxSteeringAngleDeg = 90.
     tire_stiffness_factor = 1.
@@ -163,11 +163,11 @@ class CarInterface(CarInterfaceBase):
           ret.lateralTuning.pid.kiBP = [0.]
           ret.lateralTuning.pid.kiV = [0.05]
       else:
-          ret.lateralTuning.pid.kf = 0.00005
+          ret.lateralTuning.pid.kf = 0.00005 # lower this if your car oscillates and you've done everything else.  It can be lowered to 0
           ret.lateralTuning.pid.kpBP = [0.]
-          ret.lateralTuning.pid.kpV = [0.25]
+          ret.lateralTuning.pid.kpV = [0.25] # Kp puts force on the wheel when the car isn't center, the higher Kp is, the harder / faster the wheel turns to get to center. Kp too high = the car overshoots and undershoots center. Kp too low = the car doesn't turn enough.
           ret.lateralTuning.pid.kiBP = [0.]
-          ret.lateralTuning.pid.kiV = [0.05]
+          ret.lateralTuning.pid.kiV = [0.05] # Ki dampens the overshoot / undershoot of Kp and allows the car to be centered faster, allowing for a higher Kp value. Ki too high = it gets to center without oscillations, but it takes too long to center. If the wheel oscillates forever (critically damped), then your Kp or Ki or both are too high.
     # -----------------------------------------------------------------INDI
     elif Params().get("LateralControlSelect", encoding='utf8') == "1":
       if candidate in [CAR.GENESIS]:
@@ -205,11 +205,11 @@ class CarInterface(CarInterfaceBase):
           ret.lateralTuning.indi.innerLoopGainBP = [0.]
           ret.lateralTuning.indi.innerLoopGainV = [5.6] # default 3.5 (5.6) rate error, Too high: jerky oscillation in high curvature, Too low: sloppy, cannot accomplish desired steer angle
           ret.lateralTuning.indi.outerLoopGainBP = [0.]
-          ret.lateralTuning.indi.outerLoopGainV = [5.4] # default 2.0 (5.4) angle error, Too high: twitchy hyper lane centering, oversteering, Too low: sloppy, all over lane
+          ret.lateralTuning.indi.outerLoopGainV = [5.1] # default 2.0 (5.4) angle error, Too high: twitchy hyper lane centering, oversteering, Too low: sloppy, all over lane
           ret.lateralTuning.indi.timeConstantBP = [0.]
-          ret.lateralTuning.indi.timeConstantV = [1.8] # default 1.4 (1.4)1.8 - Higher values == more smoothing, Too high: sloppy lane centering, Too low: noisy actuation, responds to every bump, maybe unable to maintain lane center due to rapid actuation
+          ret.lateralTuning.indi.timeConstantV = [1.6] # default 1.4 (1.4)1.8 - Higher values == more smoothing, Too high: sloppy lane centering, Too low: noisy actuation, responds to every bump, maybe unable to maintain lane center due to rapid actuation
           ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-          ret.lateralTuning.indi.actuatorEffectivenessV = [1.4] # default 2.3 (1.8)1.2 - Lower values == more steering, Too high: weak, sloppy lane centering, slow oscillation, can't follow high curvature, high steering error causes snappy corrections, Too low: overpower, saturation, jerky, fast oscillation, bang-bang control
+          ret.lateralTuning.indi.actuatorEffectivenessV = [1.6] # default 2.3 (1.8)1.2 - Lower values == more steering, Too high: weak, sloppy lane centering, slow oscillation, can't follow high curvature, high steering error causes snappy corrections, Too low: overpower, saturation, jerky, fast oscillation, bang-bang control
     # -----------------------------------------------------------------LQR
     elif Params().get("LateralControlSelect", encoding='utf8') == "2":
       if candidate in [CAR.GENESIS, CAR.GENESIS_G70, CAR.GENESIS_G80, CAR.GENESIS_G90]:
