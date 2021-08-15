@@ -97,7 +97,7 @@ void Sidebar::updateState(const UIState &s) {
 //    pandaStatus = warning_color;
 //    pandaStr = "GPS\nSEARCHING";
   } else if (s.scene.satelliteCount > 0) {
-    pandaStr = QString("Num of sats %1\nAccu %2").arg(s.scene.satelliteCount).arg(fmin(10, s.scene.gpsAccuracy), 0, 'f', 2);
+    pandaStr = QString("Sats %1\nAccu %2").arg(s.scene.satelliteCount).arg(fmin(10, s.scene.gpsAccuracy), 0, 'f', 2);
     pandaStatus = sm["liveLocationKalman"].getLiveLocationKalman().getGpsOK() ? good_color : warning_color;
   }
   setProperty("pandaStr", pandaStr);
