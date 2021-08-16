@@ -203,13 +203,13 @@ class CarInterface(CarInterfaceBase):
       else:
           ret.lateralTuning.init('indi')
           ret.lateralTuning.indi.innerLoopGainBP = [0.]
-          ret.lateralTuning.indi.innerLoopGainV = [6.6] # default 3.5 (5.6) rate error, Too high: jerky oscillation in high curvature, Too low: sloppy, cannot accomplish desired steer angle
+          ret.lateralTuning.indi.innerLoopGainV = [5.6] # default 3.5 (5.6) rate error, Too high: jerky oscillation in high curvature, Too low: sloppy, cannot accomplish desired steer angle
           ret.lateralTuning.indi.outerLoopGainBP = [0.]
-          ret.lateralTuning.indi.outerLoopGainV = [5.1] # default 2.0 (5.4) angle error, Too high: twitchy hyper lane centering, oversteering, Too low: sloppy, all over lane
+          ret.lateralTuning.indi.outerLoopGainV = [5.1] # default 2.0 (5.4) (5.1) angle error, Too high: twitchy hyper lane centering, oversteering, Too low: sloppy, all over lane
           ret.lateralTuning.indi.timeConstantBP = [0.]
-          ret.lateralTuning.indi.timeConstantV = [1.6] # default 1.4 (1.4)1.8 - Higher values == more smoothing, Too high: sloppy lane centering, Too low: noisy actuation, responds to every bump, maybe unable to maintain lane center due to rapid actuation
+          ret.lateralTuning.indi.timeConstantV = [1.6] # default 1.4 (1.4)1.8 (1.6)- Higher values == more smoothing, Too high: sloppy lane centering, Too low: noisy actuation, responds to every bump, maybe unable to maintain lane center due to rapid actuation
           ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-          ret.lateralTuning.indi.actuatorEffectivenessV = [1.6] # default 2.3 (1.8)1.2 - Lower values == more steering, Too high: weak, sloppy lane centering, slow oscillation, can't follow high curvature, high steering error causes snappy corrections, Too low: overpower, saturation, jerky, fast oscillation, bang-bang control
+          ret.lateralTuning.indi.actuatorEffectivenessV = [1.6] # default 2.3 (1.8)1.2 (1.6)- Lower values == more steering, Too high: weak, sloppy lane centering, slow oscillation, can't follow high curvature, high steering error causes snappy corrections, Too low: overpower, saturation, jerky, fast oscillation, bang-bang control
     # -----------------------------------------------------------------LQR
     elif Params().get("LateralControlSelect", encoding='utf8') == "2":
       if candidate in [CAR.GENESIS, CAR.GENESIS_G70, CAR.GENESIS_G80, CAR.GENESIS_G90]:
