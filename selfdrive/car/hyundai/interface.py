@@ -203,7 +203,7 @@ class CarInterface(CarInterfaceBase):
       else:
           ret.lateralTuning.init('indi')
           ret.lateralTuning.indi.innerLoopGainBP = [0.]
-          ret.lateralTuning.indi.innerLoopGainV = [5.6] # default 3.5 (5.6) rate error, Too high: jerky oscillation in high curvature, Too low: sloppy, cannot accomplish desired steer angle
+          ret.lateralTuning.indi.innerLoopGainV = [6.6] # default 3.5 (5.6) rate error, Too high: jerky oscillation in high curvature, Too low: sloppy, cannot accomplish desired steer angle
           ret.lateralTuning.indi.outerLoopGainBP = [0.]
           ret.lateralTuning.indi.outerLoopGainV = [5.1] # default 2.0 (5.4) angle error, Too high: twitchy hyper lane centering, oversteering, Too low: sloppy, all over lane
           ret.lateralTuning.indi.timeConstantBP = [0.]
