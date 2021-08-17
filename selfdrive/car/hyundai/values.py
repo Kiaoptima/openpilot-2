@@ -12,7 +12,7 @@ class CarControllerParams:
       self.STEER_DELTA_DOWN = 5
     else:
       self.STEER_MAX = 384 # default 384
-      self.STEER_DELTA_UP = 3
+      self.STEER_DELTA_UP = 5 # default 3
       self.STEER_DELTA_DOWN = 5 # default 7
     self.STEER_DRIVER_ALLOWANCE = 50
     self.STEER_DRIVER_MULTIPLIER = 2
