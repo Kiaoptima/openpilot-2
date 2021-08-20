@@ -37,7 +37,7 @@ class CarInterface(CarInterfaceBase):
 
     ret.steerActuatorDelay = 0.15  # Default delay 0.1 - Higher value and the car enters the turn earlier
     ret.steerRateCost = 0.3  # Default (0.5) 0.25 - 0.3 tells the system how fast to respond to changing road conditions if sRC is too low it will be very "darty" and reactive if it's too high it will be sluggish 0.5 is usually fine
-    ret.steerLimitTimer = 0.5  # Default (0.8) 1.2 - 1.0
+    ret.steerLimitTimer = 1.0  # Default (0.8) 1.2 - 1.0
     ret.maxSteeringAngleDeg = 90.
     tire_stiffness_factor = 1.
     ret.startAccel = 1.0
