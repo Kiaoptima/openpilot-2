@@ -110,7 +110,7 @@ class CarInterface(CarInterfaceBase):
         ret.mass = 1565. + STD_CARGO_KG
         ret.wheelbase = 2.805
         ret.steerRatio = 15.8
-        ret.minSteerSpeed = 45 * CV.KPH_TO_MS
+        ret.minSteerSpeed = 50 * CV.KPH_TO_MS
     elif candidate == CAR.SPORTAGE:
         ret.mass = 1770. + STD_CARGO_KG
         ret.wheelbase = 2.670
