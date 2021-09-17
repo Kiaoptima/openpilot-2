@@ -40,7 +40,7 @@ class CarInterface(CarInterfaceBase):
       if fw.ecu == "eps" and b"," in fw.fwVersion:
         eps_modified = True
 
-    ret.maxSteeringAngleDeg = 90.
+    ret.maxSteeringAngleDeg = 140. # default 90.
 
     # STD_CARGO_KG=136. wheelbase or mass date using wikipedia
     # genesis
@@ -109,7 +109,7 @@ class CarInterface(CarInterfaceBase):
     elif candidate in [CAR.OPTIMA, CAR.OPTIMA_HEV, CAR.OPTIMA20, CAR.OPTIMA20_HEV]:
         ret.mass = 1565. + STD_CARGO_KG
         ret.wheelbase = 2.805
-        ret.steerRatio = 15.8
+        ret.steerRatio = 14.8 # default 15.8
         ret.minSteerSpeed = 50 * CV.KPH_TO_MS
     elif candidate == CAR.SPORTAGE:
         ret.mass = 1770. + STD_CARGO_KG
@@ -301,9 +301,9 @@ class CarInterface(CarInterfaceBase):
     ret.longitudinalActuatorDelay = 0.2
 
     # steer, gas, brake limitations VS speed
-    ret.steerActuatorDelay = 0.15  # 0.1 Default delay
-    ret.steerRateCost = 0.3 # 0.25
-    ret.steerLimitTimer = 1.0 # 1.2
+    ret.steerActuatorDelay = 0.1  # (0.15) 0.1 Default delay
+    ret.steerRateCost = 0.5 # (0.3) 0.25
+    ret.steerLimitTimer = 2.5 # (1.0) 1.2
     ret.steerMaxBP = [0.]
     ret.steerMaxV = [1.5]
 
