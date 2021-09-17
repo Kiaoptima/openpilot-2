@@ -773,8 +773,6 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   EventName.wrongGear: {
     ET.SOFT_DISABLE: SoftDisableAlert("Gear not D"),
     ET.NO_ENTRY: NoEntryAlert("Gear not D"),
-    #ET.USER_DISABLE: EngagementAlert(AudibleAlert.chimeDisengage),
-    #ET.NO_ENTRY: NoEntryAlert("기어를 [D]로 변경하세요",
                               audible_alert=AudibleAlert.chimeGeard, duration_sound=3.),
   },
 
