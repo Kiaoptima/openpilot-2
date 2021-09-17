@@ -109,8 +109,7 @@ class CarInterface(CarInterfaceBase):
     elif candidate in [CAR.OPTIMA, CAR.OPTIMA_HEV, CAR.OPTIMA20, CAR.OPTIMA20_HEV]:
         ret.mass = 1565. + STD_CARGO_KG
         ret.wheelbase = 2.805
-        ret.steerRatio = 15.8 # 15.8
-        ret.minSteerSpeed = 45 * CV.KPH_TO_MS
+        ret.steerRatio = 15.8
     elif candidate == CAR.SPORTAGE:
         ret.mass = 1770. + STD_CARGO_KG
         ret.wheelbase = 2.670
@@ -163,11 +162,11 @@ class CarInterface(CarInterfaceBase):
           ret.lateralTuning.pid.kiBP = [0.]
           ret.lateralTuning.pid.kiV = [0.05]
       else:
-          ret.lateralTuning.pid.kf = 0.00005 # lower this if your car oscillates and you've done everything else.  It can be lowered to 0
+          ret.lateralTuning.pid.kf = 0.00005
           ret.lateralTuning.pid.kpBP = [0.]
-          ret.lateralTuning.pid.kpV = [0.25] # Kp puts force on the wheel when the car isn't center, the higher Kp is, the harder / faster the wheel turns to get to center. Kp too high = the car overshoots and undershoots center. Kp too low = the car doesn't turn enough.
+          ret.lateralTuning.pid.kpV = [0.25]
           ret.lateralTuning.pid.kiBP = [0.]
-          ret.lateralTuning.pid.kiV = [0.05] # Ki dampens the overshoot / undershoot of Kp and allows the car to be centered faster, allowing for a higher Kp value. Ki too high = it gets to center without oscillations, but it takes too long to center. If the wheel oscillates forever (critically damped), then your Kp or Ki or both are too high.
+          ret.lateralTuning.pid.kiV = [0.05]
     # -----------------------------------------------------------------INDI
     elif Params().get("LateralControlSelect", encoding='utf8') == "1":
       if candidate in [CAR.GENESIS]:
@@ -203,13 +202,13 @@ class CarInterface(CarInterfaceBase):
       else:
           ret.lateralTuning.init('indi')
           ret.lateralTuning.indi.innerLoopGainBP = [0.]
-          ret.lateralTuning.indi.innerLoopGainV = [3.5] # default 3.5 (5.6) rate error, Too high: jerky oscillation in high curvature, Too low: sloppy, cannot accomplish desired steer angle
+          ret.lateralTuning.indi.innerLoopGainV = [3.5]
           ret.lateralTuning.indi.outerLoopGainBP = [0.]
-          ret.lateralTuning.indi.outerLoopGainV = [2.0] # default 2.0 (5.4) (5.1) angle error, Too high: twitchy hyper lane centering, oversteering, Too low: sloppy, all over lane
+          ret.lateralTuning.indi.outerLoopGainV = [2.0]
           ret.lateralTuning.indi.timeConstantBP = [0.]
-          ret.lateralTuning.indi.timeConstantV = [1.4] # default 1.4 (1.4)1.8 (1.6)- Higher values == more smoothing, Too high: sloppy lane centering, Too low: noisy actuation, responds to every bump, maybe unable to maintain lane center due to rapid actuation
+          ret.lateralTuning.indi.timeConstantV = [1.4]
           ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-          ret.lateralTuning.indi.actuatorEffectivenessV = [2.3] # default 2.3 (1.8)1.2 (1.6)- Lower values == more steering, Too high: weak, sloppy lane centering, slow oscillation, can't follow high curvature, high steering error causes snappy corrections, Too low: overpower, saturation, jerky, fast oscillation, bang-bang control
+          ret.lateralTuning.indi.actuatorEffectivenessV = [2.3]
     # -----------------------------------------------------------------LQR
     elif Params().get("LateralControlSelect", encoding='utf8') == "2":
       if candidate in [CAR.GENESIS, CAR.GENESIS_G70, CAR.GENESIS_G80, CAR.GENESIS_G90]:
@@ -301,9 +300,9 @@ class CarInterface(CarInterfaceBase):
     ret.longitudinalActuatorDelay = 0.2
 
     # steer, gas, brake limitations VS speed
-    ret.steerActuatorDelay = 0.15  # Default delay 0.1 - Higher value and the car enters the turn earlier
-    ret.steerRateCost = 0.3  # Default (0.5) 0.25 - 0.3 tells the system how fast to respond to changing road conditions if sRC is too low it will be very "darty" and reactive if it's too high it will be sluggish 0.5 is usually fine
-    ret.steerLimitTimer = 1.0  # Default (0.8) 1.2 - 1.0
+    ret.steerActuatorDelay = 0.1  # Default delay
+    ret.steerRateCost = 0.25
+    ret.steerLimitTimer = 1.2
     ret.steerMaxBP = [0.]
     ret.steerMaxV = [1.5]
 
