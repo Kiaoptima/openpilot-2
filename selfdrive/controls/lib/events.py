@@ -192,7 +192,7 @@ def below_steer_speed_alert(CP: car.CarParams, sm: messaging.SubMaster, metric: 
   unit = "㎞/h" if metric else "mph"
   return Alert(
     "TAKE CONTROL",
-    "Steer Unavailable Below %d %s" % (speed+5, unit),
+    "Steer Unavailable Below %d %s" % (speed+0, unit),
     #"핸들을 잡아주세요",
     #"%d %s 이상의 속도에서 조향제어가능합니다" % (speed, unit),
     AlertStatus.userPrompt, AlertSize.mid,
