@@ -110,6 +110,7 @@ class CarInterface(CarInterfaceBase):
         ret.mass = 1565. + STD_CARGO_KG
         ret.wheelbase = 2.805
         ret.steerRatio = 15.8
+        ret.minSteerSpeed = 45 * CV.KPH_TO_MS
     elif candidate == CAR.SPORTAGE:
         ret.mass = 1770. + STD_CARGO_KG
         ret.wheelbase = 2.670
@@ -300,9 +301,9 @@ class CarInterface(CarInterfaceBase):
     ret.longitudinalActuatorDelay = 0.2
 
     # steer, gas, brake limitations VS speed
-    ret.steerActuatorDelay = 0.1  # Default delay
-    ret.steerRateCost = 0.25
-    ret.steerLimitTimer = 1.2
+    ret.steerActuatorDelay = 0.15  # 0.1 Default delay
+    ret.steerRateCost = 0.3 # 0.25
+    ret.steerLimitTimer = 1.0 # 1.2
     ret.steerMaxBP = [0.]
     ret.steerMaxV = [1.5]
 
