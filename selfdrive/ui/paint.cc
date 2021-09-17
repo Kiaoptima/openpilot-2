@@ -471,7 +471,7 @@ static void bb_ui_draw_measures_right(UIState *s, int bb_x, int bb_y, int bb_w) 
       } //show Red if more than 80℃
     snprintf(val_str, sizeof(val_str), "%.0f", (round((scene->cpuTempAvg))));
     strcat(val_str, val_add);
-    bb_h += bb_ui_draw_measure(s, val_str, "CPU 온도", bb_rx, bb_ry, val_color, lab_color, value_fontSize, label_fontSize);
+    bb_h += bb_ui_draw_measure(s, val_str, "CPU TEMP", bb_rx, bb_ry, val_color, lab_color, value_fontSize, label_fontSize);
     bb_ry = bb_y + bb_h;
   }
 
