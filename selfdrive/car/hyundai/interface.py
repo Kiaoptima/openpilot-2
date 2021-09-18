@@ -40,7 +40,7 @@ class CarInterface(CarInterfaceBase):
       if fw.ecu == "eps" and b"," in fw.fwVersion:
         eps_modified = True
 
-    ret.maxSteeringAngleDeg = 90. # default 90.
+    ret.maxSteeringAngleDeg = 140. # default 90.
 
     # STD_CARGO_KG=136. wheelbase or mass date using wikipedia
     # genesis
