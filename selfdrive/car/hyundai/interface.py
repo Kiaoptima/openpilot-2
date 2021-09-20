@@ -303,7 +303,7 @@ class CarInterface(CarInterfaceBase):
     # steer, gas, brake limitations VS speed
     ret.steerActuatorDelay = 0.1  # (0.15) 0.1 Default delay
     ret.steerRateCost = 0.5 # (0.3) 0.25
-    ret.steerLimitTimer = 1.0 # (1.0) 1.2
+    ret.steerLimitTimer = 0.8 # (1.0) 1.2
     ret.steerMaxBP = [0.]
     ret.steerMaxV = [1.5]
 
