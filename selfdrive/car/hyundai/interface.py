@@ -203,13 +203,13 @@ class CarInterface(CarInterfaceBase):
       else:
           ret.lateralTuning.init('indi')
           ret.lateralTuning.indi.innerLoopGainBP = [0.]
-          ret.lateralTuning.indi.innerLoopGainV = [4.5] #def 3.5
+          ret.lateralTuning.indi.innerLoopGainV = [5.6] #def 3.5
           ret.lateralTuning.indi.outerLoopGainBP = [0.]
-          ret.lateralTuning.indi.outerLoopGainV = [3.3] # def 2.0
+          ret.lateralTuning.indi.outerLoopGainV = [5.1] # def 2.0
           ret.lateralTuning.indi.timeConstantBP = [0.]
-          ret.lateralTuning.indi.timeConstantV = [1.4] # def 1.4
+          ret.lateralTuning.indi.timeConstantV = [1.6] # def 1.4
           ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-          ret.lateralTuning.indi.actuatorEffectivenessV = [1.8] # def 2.3
+          ret.lateralTuning.indi.actuatorEffectivenessV = [1.6] # def 2.3
     # -----------------------------------------------------------------LQR
     elif Params().get("LateralControlSelect", encoding='utf8') == "2":
       if candidate in [CAR.GENESIS, CAR.GENESIS_G70, CAR.GENESIS_G80, CAR.GENESIS_G90]:
