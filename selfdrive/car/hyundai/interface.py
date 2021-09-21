@@ -203,13 +203,13 @@ class CarInterface(CarInterfaceBase):
       else:
           ret.lateralTuning.init('indi')
           ret.lateralTuning.indi.innerLoopGainBP = [0.]
-          ret.lateralTuning.indi.innerLoopGainV = [3.5]
+          ret.lateralTuning.indi.innerLoopGainV = [4.5] #def 3.5
           ret.lateralTuning.indi.outerLoopGainBP = [0.]
-          ret.lateralTuning.indi.outerLoopGainV = [2.0]
+          ret.lateralTuning.indi.outerLoopGainV = [3.3] # def 2.0
           ret.lateralTuning.indi.timeConstantBP = [0.]
-          ret.lateralTuning.indi.timeConstantV = [1.4]
+          ret.lateralTuning.indi.timeConstantV = [1.4] # def 1.4
           ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-          ret.lateralTuning.indi.actuatorEffectivenessV = [2.3]
+          ret.lateralTuning.indi.actuatorEffectivenessV = [1.8] # def 2.3
     # -----------------------------------------------------------------LQR
     elif Params().get("LateralControlSelect", encoding='utf8') == "2":
       if candidate in [CAR.GENESIS, CAR.GENESIS_G70, CAR.GENESIS_G80, CAR.GENESIS_G90]:
@@ -224,14 +224,14 @@ class CarInterface(CarInterfaceBase):
           ret.lateralTuning.lqr.l = [0.33, 0.318]
       elif candidate in [CAR.OPTIMA, CAR.OPTIMA_HEV]:
           ret.lateralTuning.init('lqr')
-          ret.lateralTuning.lqr.scale = 1700.0
-          ret.lateralTuning.lqr.ki = 0.016
-          ret.lateralTuning.lqr.dcGain = 0.002
+          ret.lateralTuning.lqr.scale = 3000.0
+          ret.lateralTuning.lqr.ki = 0.005
           ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268]
           ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05]
           ret.lateralTuning.lqr.c = [1., 0.]
-          ret.lateralTuning.lqr.k = [-110.0, 451.0]
-          ret.lateralTuning.lqr.l = [0.33, 0.318]
+          ret.lateralTuning.lqr.k = [-110.73572306, 451.22718255]
+          ret.lateralTuning.lqr.l = [0.3233671, 0.3185757]
+          ret.lateralTuning.lqr.dcGain = 0.002237852961363602
       elif candidate in [CAR.GRANDEUR, CAR.GRANDEUR_HEV, CAR.GRANDEUR20, CAR.GRANDEUR20_HEV, CAR.K7, CAR.K7_HEV]:
           ret.lateralTuning.init('lqr')
           ret.lateralTuning.lqr.scale = 1700.
