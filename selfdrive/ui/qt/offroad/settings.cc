@@ -160,7 +160,7 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
   auto resetCalibBtn = new ButtonControl("Reset Calibration", "RESET", resetCalibDesc);
   //auto resetCalibBtn = new ButtonControl("캘리브레이션 초기화", "실행", resetCalibDesc);
   connect(resetCalibBtn, &ButtonControl::clicked, [=]() {
-    if (ConfirmationDialog::confirm("Process?", this)) {
+    if (ConfirmationDialog::confirm("Confirm reset calibration?", this)) {
     //if (ConfirmationDialog::confirm("실행하시겠습니까?", this)) {
       Params().remove("CalibrationParams");
     }
@@ -205,7 +205,7 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
   auto uninstallBtn = new ButtonControl("Uninstall " + getBrand(), "UNINSTALL");
   //auto uninstallBtn = new ButtonControl(getBrand() + " 제거", "실행");
   connect(uninstallBtn, &ButtonControl::clicked, [=]() {
-    if (ConfirmationDialog::confirm("Process?", this)) {
+    if (ConfirmationDialog::confirm("Confirm uninstall?", this)) {
     //if (ConfirmationDialog::confirm("실행하시겠습니까?", this)) {
       Params().putBool("DoUninstall", true);
     }
@@ -246,7 +246,7 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
   reset_layout->addWidget(reset_calib_btn);
   QObject::connect(reset_calib_btn, &QPushButton::released, [=]() {
     //if (ConfirmationDialog::confirm("Process?", this)) {
-    if (ConfirmationDialog::confirm("do you want to run?", this)) {
+    if (ConfirmationDialog::confirm("Confirm reset calibration?", this)) {
       Params().remove("CalibrationParams");
       Params().remove("LiveParameters");
       emit closeSettings();
@@ -265,7 +265,7 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
   reboot_btn->setObjectName("reboot_btn");
   power_layout->addWidget(reboot_btn);
   QObject::connect(reboot_btn, &QPushButton::clicked, [=]() {
-    if (ConfirmationDialog::confirm("Process?", this)) {
+    if (ConfirmationDialog::confirm("Confirm reboot?", this)) {
     //if (ConfirmationDialog::confirm("실행하시겠습니까?", this)) {
       Hardware::reboot();
     }
@@ -276,7 +276,7 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
   poweroff_btn->setObjectName("poweroff_btn");
   power_layout->addWidget(poweroff_btn);
   QObject::connect(poweroff_btn, &QPushButton::clicked, [=]() {
-    if (ConfirmationDialog::confirm("Process?", this)) {
+    if (ConfirmationDialog::confirm("Confirm power off?", this)) {
     //if (ConfirmationDialog::confirm("실행하시겠습니까?", this)) {
       Hardware::poweroff();
     }
@@ -436,7 +436,7 @@ QWidget * network_panel(QWidget * parent) {
   auto gitpullbtn = new ButtonControl("Git Fetch and Reset", "RUN");
   //auto gitpullbtn = new ButtonControl("Git Fetch and Reset", "실행");
   QObject::connect(gitpullbtn, &ButtonControl::clicked, [=]() {
-    if (ConfirmationDialog::confirm("Process?", w)){
+    if (ConfirmationDialog::confirm("Confirm git fetch and reset?", w)){
     //if (ConfirmationDialog::confirm("실행하시겠습니까?", w)){
       std::system(gitpull);
       QTimer::singleShot(1000, []() { Hardware::reboot(); });
@@ -448,7 +448,7 @@ QWidget * network_panel(QWidget * parent) {
   auto pandaflashbtn = new ButtonControl("Panda Firmware Flash", "RUN");
   //auto pandaflashbtn = new ButtonControl("판다 펌웨어 플래싱", "실행");
   QObject::connect(pandaflashbtn, &ButtonControl::clicked, [=]() {
-    if (ConfirmationDialog::confirm("Process?", w)){
+    if (ConfirmationDialog::confirm("Confirm flash panda firmware?", w)){
     //if (ConfirmationDialog::confirm("실행하시겠습니까?", w)){
       std::system(panda_flash);
       QTimer::singleShot(1000, []() { Hardware::reboot(); });
@@ -460,7 +460,7 @@ QWidget * network_panel(QWidget * parent) {
   auto pandarecoverbtn = new ButtonControl("Panda Firmware Recover", "RUN");
   //auto pandarecoverbtn = new ButtonControl("판다 펌웨어 복구", "실행");
   QObject::connect(pandarecoverbtn, &ButtonControl::clicked, [=]() {
-    if (ConfirmationDialog::confirm("Process?", w)){
+    if (ConfirmationDialog::confirm("Confirm panda firmware recover?", w)){
     //if (ConfirmationDialog::confirm("실행하시겠습니까?", w)){
       std::system(panda_recover);
       QTimer::singleShot(1000, []() { Hardware::reboot(); });
@@ -472,7 +472,7 @@ QWidget * network_panel(QWidget * parent) {
   auto addfuncbtn = new ButtonControl("Add Function", "RUN");
   //auto addfuncbtn = new ButtonControl("추가 기능", "실행");
   QObject::connect(addfuncbtn, &ButtonControl::clicked, [=]() {
-    if (ConfirmationDialog::confirm("Process?", w)){
+    if (ConfirmationDialog::confirm("Confirm add function?", w)){
     //if (ConfirmationDialog::confirm("실행하시겠습니까?", w)) {
       std::system(addfunc);
       QTimer::singleShot(1000, []() { Hardware::reboot(); });
@@ -484,7 +484,7 @@ QWidget * network_panel(QWidget * parent) {
   auto realdataclearbtn = new ButtonControl("Driving log Delete", "RUN");
   //auto realdataclearbtn = new ButtonControl("주행로그 삭제", "실행");
   QObject::connect(realdataclearbtn, &ButtonControl::clicked, [=]() {
-    if (ConfirmationDialog::confirm("Process?", w)){
+    if (ConfirmationDialog::confirm("Confirm delete driving log?", w)){
     //if (ConfirmationDialog::confirm("실행하시겠습니까?", w)) {
       std::system(realdata_clear);
     }
