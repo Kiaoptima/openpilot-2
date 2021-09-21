@@ -11,7 +11,7 @@ class CarControllerParams:
       self.STEER_DELTA_UP = 3
       self.STEER_DELTA_DOWN = 5
     else:
-      self.STEER_MAX = 255 # def 384
+      self.STEER_MAX = 380 # def 384
       self.STEER_DELTA_UP = 3
       self.STEER_DELTA_DOWN = 5 # def 7
     self.STEER_DRIVER_ALLOWANCE = 50
