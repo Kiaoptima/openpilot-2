@@ -109,7 +109,7 @@ class CarInterface(CarInterfaceBase):
     elif candidate in [CAR.OPTIMA, CAR.OPTIMA_HEV, CAR.OPTIMA20, CAR.OPTIMA20_HEV]:
         ret.mass = 1565. + STD_CARGO_KG
         ret.wheelbase = 2.805
-        ret.steerRatio = 17.8 # default 15.8
+        ret.steerRatio = 16.5 # default 15.8
         ret.minSteerSpeed = 50 * CV.KPH_TO_MS
     elif candidate == CAR.SPORTAGE:
         ret.mass = 1770. + STD_CARGO_KG
